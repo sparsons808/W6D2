@@ -12,11 +12,11 @@ class SQLObject
   end
 
   def self.table_name=(table_name)
-    # ...
+    @table_name = table_name
   end
 
   def self.table_name
-    # ...
+    @table_name.tableize
   end
 
   def self.all
@@ -36,6 +36,7 @@ class SQLObject
   end
 
   def attributes
+    @attribute ||= {}
     # ...
   end
 
