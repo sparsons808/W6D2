@@ -5,7 +5,13 @@ require 'active_support/inflector'
 
 class SQLObject
   def self.columns
-    # ...
+    column = DBConnection.execute2(<<-SQL)
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+    SQL
+    column.map(&:to_sym)
   end
 
   def self.finalize!
